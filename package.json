@@ -1,28 +1,18 @@
 {
   "name": "calculator-admin-v2",
   "version": "1.0.0",
-  "description": "Admin panel for AI-driven multilingual calculator site",
-  "main": "server-v2.js",
+  "type": "module",
   "scripts": {
-    "start": "node server-v2.js",
-    "test": "jest"
+    "dev": "ts-node server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
-  "author": "Your Name",
-  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "fs-extra": "^11.1.1",
-    "glob": "^7.2.3",
-    "gray-matter": "^4.0.3",
-    "inquirer": "^9.2.9",
-    "openai": "^4.38.0"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/__tests__"
-    ]
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
   }
 }
