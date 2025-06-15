@@ -1,0 +1,19 @@
+# Calculator Admin v2 - Quick Guide 🚀
+
+## Folder structure:
+
+- index-v2.html → Admin UI
+- server-v2.js → API server
+- .env/prompts/ → Prompt templates (versioned)
+- logs/ → Logs of user actions (to be implemented)
+- reports/ → AI review reports
+- calcbundle/ → Calcbundle JSON files (from IDEA stage)
+- components/tools/ → Vue components
+- content/en, content/it, content/fr, content/es → Markdown content
+
+## How to run:
+
+1. Start API server:
+
+```bash
+node server-v2.js

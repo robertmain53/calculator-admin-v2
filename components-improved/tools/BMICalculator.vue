@@ -1,0 +1,76 @@
+<template>
+  <section class="space-y-4" role="form" aria-label="BMI Calculator">
+    <div>
+      <label for="weight" class="block mb-2">Weight (kg):</label>
+      <input id="weight" v-model.lazy.number="weight" type="number" class="border p-2 rounded w-full" aria-required="true" min="1" aria-label="Enter your weight in kilograms" aria-describedby="weightError" />
+      <p id="weightError" v-show="weightError" class="text-red-700" role="alert">Please enter a valid weight in kilograms.</p>
+    </div>
+
+    <div>
+      <label for="height" class="block mb-2">Height (cm):</label>
+      <input id="height" v-model.lazy.number="height" type="number" class="border p-2 rounded w-full" aria-required="true" min="1" aria-label="Enter your height in centimeters" aria-describedby="heightError" />
+      <p id="heightError" v-show="heightError" class="text-red-700" role="alert">Please enter a valid height in centimeters.</p>
+    </div>
+
+    <div class="flex justify-between">
+      <button @click="calculateBMI" class="bg-blue-500 text-white px-4 py-2 rounded" :disabled="weightError || heightError" aria-label="Calculate BMI">Calculate BMI</button>
+      <button @click="clearInputs" class="bg-gray-500 text-white px-4 py-2 rounded" aria-label="Clear inputs">Clear</button>
+    </div>
+
+    <div v-if="bmi !== null" class="mt-4" aria-live="polite">
+      <p>Your BMI is: <strong>{{ bmi.toFixed(2) }}</strong></p>
+      <p>Status: <strong>{{ bmiStatus }}</strong></p>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+const weight = ref(0)
+const height = ref(0)
+const bmi = ref(null)
+const bmiStatus = ref('')
+
+const weightError = computed(() => weight.value <= 0)
+const heightError = computed(() => height.value <= 0)
+
+function calculateBMI() {
+  if (weightError.value || heightError.value) return
+
+  const heightInMeters = height.value / 100
+  const bmiValue = weight.value / (heightInMeters * heightInMeters)
+  bmi.value = bmiValue
+
+  if (bmiValue < 18.5) {
+    bmiStatus.value = 'Underweight'
+  } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
+    bmiStatus.value = 'Normal weight'
+  } else if (bmiValue >= 25 && bmiValue <= 29.9) {
+    bmiStatus.value = 'Overweight'
+  } else {
+    bmiStatus.value = 'Obesity'
+  }
+}
+
+function clearInputs() {
+  weight.value = 0
+  height.value = 0
+  bmi.value = null
+  bmiStatus.value = ''
+}
+</script>
+
+<style scoped>
+@media (max-width: 600px) {
+  .space-y-4 {
+    flex-direction: column;
+  }
+  .flex {
+    flex-direction: column;
+  }
+  .text-red-700 {
+    color: #d8000c;
+  }
+}
+</style>

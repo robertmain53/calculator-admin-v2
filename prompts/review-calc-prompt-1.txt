@@ -1,0 +1,33 @@
+# AI Review of Calculator
+
+## Tasks:
+
+1. Validate the formulas and logic of the calculator (check correctness, sources)
+2. Evaluate UX quality and clarity
+3. Check Accessibility (A11y) compliance
+4. Evaluate EEAT factors:
+    - Authoritativeness of content
+    - Completeness
+    - User intent coverage
+5. Compare with top 5 competitor calculators:
+    - Features
+    - UX patterns
+    - Content quality
+6. Suggest improvements, ranked by impact (High, Medium, Low)
+7. Output a structured JSON report with the following keys:
+
+```json
+{
+  "formulas_validation": "...",
+  "ux_review": "...",
+  "accessibility_review": "...",
+  "eeat_review": "...",
+  "url_of_competitor_in_the_comparison": "...",
+  "competitor_analysis": "...",
+  "improvement_suggestions": [
+    { "impact": "High", "suggestion": "..." },
+    { "impact": "Medium", "suggestion": "..." },
+    ...
+  ]
+}
+
